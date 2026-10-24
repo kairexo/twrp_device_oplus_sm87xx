@@ -46,7 +46,9 @@ AB_OTA_PARTITIONS += \
     my_preload \
     my_product \
     my_region \
-    my_stock
+    my_stock \
+    system_dlkm_gki \
+    system_dlkm_oki
 
 # Bootloader
 PRODUCT_PLATFORM                := sun
@@ -56,6 +58,9 @@ TARGET_BOOTLOADER_BOARD_NAME    := sun
 BOARD_USES_METADATA_PARTITION   := true
 TW_INCLUDE_CRYPTO               := true
 TW_INCLUDE_OMAPI                := true
+
+BOARD_RECOVERY_IMAGE_PREPARE += \
+cp -f $(DEVICE_PATH)/recovery/root/vendor/lib64/libc++_v36.so $(TARGET_RECOVERY_ROOT_OUT)/system/lib64/libc++.so;
 
 # Debug
 TARGET_USES_LOGD                := true
@@ -90,7 +95,7 @@ BOARD_SUPER_PARTITION_SIZE                  := 15569256448
 BOARD_SUPER_PARTITION_GROUPS                := qti_dynamic_partitions
 BOARD_QTI_DYNAMIC_PARTITIONS_SIZE           := 15565062144
 BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST := system system_ext product vendor vendor_dlkm odm
-BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST += my_bigball my_carrier my_company my_engineering my_heytap my_manifest my_preload my_product my_region my_stock
+BOARD_QTI_DYNAMIC_PARTITIONS_PARTITION_LIST += my_bigball my_carrier my_company my_engineering my_heytap my_manifest my_preload my_product my_region my_stock system_dlkm_gki system_dlkm_oki
 
 BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_ODM             := odm
