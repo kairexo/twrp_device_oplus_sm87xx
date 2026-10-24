@@ -67,6 +67,9 @@ on property:twrp.modules.loaded=true
     start vendor.oplus.vibrator
     trigger twrp_secure_element
 
+on twrp_secure_element && property:twrp.se.no_sb=true
+    enable secure_element_hal_service.aidl
+
 on twrp_secure_element && property:twrp.se.no_sb=false
     enable vendor.secure_element
 
